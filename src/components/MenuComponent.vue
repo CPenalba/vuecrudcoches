@@ -20,7 +20,9 @@
         <div className="collapse navbar-collapse" id="navbarsExample03">
           <ul className="navbar-nav me-auto mb-2 mb-sm-0">
             <li className="nav-item">
-              <router-link class="nav-link active" to="/">Coches</router-link>
+              <router-link class="nav-link active" to="/"
+                >Tabla Coches</router-link
+              >
             </li>
             <li className="nav-item">
               <router-link class="nav-link active" to="/create"

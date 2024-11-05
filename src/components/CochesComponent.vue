@@ -29,32 +29,19 @@
           <td><img :src="car.imagen" width="150px" height="150px" /></td>
 
           <td>
-            <!-- <router-link
-              class="btn btn-warning"
-              :to="
-                '/details/' +
-                dept.idDepartamento +
-                '/' +
-                dept.nombre +
-                '/' +
-                dept.localidad
-              "
+            <router-link class="btn btn-warning" :to="'/details/' + car.idCoche"
               >Detalles</router-link
-            > -->
+            >
           </td>
           <td>
-            <!-- <router-link
-              class="btn btn-info"
-              :to="'/update/' + dept.idDepartamento"
+            <router-link class="btn btn-info" :to="'/update/' + car.idCoche"
               >Update</router-link
-            > -->
+            >
           </td>
           <td>
-            <!-- <router-link
-              class="btn btn-dark"
-              :to="'/delete/' + dept.idDepartamento"
+            <router-link class="btn btn-dark" :to="'/delete/' + car.idCoche"
               >Delete</router-link
-            > -->
+            >
           </td>
         </tr>
       </tbody>
