@@ -1,0 +1,202 @@
+<template>
+  <div>
+    <h1>Coches Component</h1>
+    <div class="container" v-if="status == false">
+      <div class="loader"></div>
+      <div class="loader"></div>
+      <div class="loader"></div>
+    </div>
+    <table v-else class="table table-primary">
+      <thead>
+        <tr>
+          <th>Id coche</th>
+          <th>Marca</th>
+          <th>Modelo</th>
+          <th>Conductor</th>
+          <th>Imagen</th>
+
+          <th>Detalles</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="car in coches" :key="car">
+          <td>{{ car.idCoche }}</td>
+          <td>{{ car.marca }}</td>
+          <td>{{ car.modelo }}</td>
+          <td>{{ car.conductor }}</td>
+          <td><img :src="car.imagen" width="150px" height="150px" /></td>
+
+          <td>
+            <!-- <router-link
+              class="btn btn-warning"
+              :to="
+                '/details/' +
+                dept.idDepartamento +
+                '/' +
+                dept.nombre +
+                '/' +
+                dept.localidad
+              "
+              >Detalles</router-link
+            > -->
+          </td>
+          <td>
+            <!-- <router-link
+              class="btn btn-info"
+              :to="'/update/' + dept.idDepartamento"
+              >Update</router-link
+            > -->
+          </td>
+          <td>
+            <!-- <router-link
+              class="btn btn-dark"
+              :to="'/delete/' + dept.idDepartamento"
+              >Delete</router-link
+            > -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script>
+import ServiceCoche from "@/services/ServiceCoche";
+const service = new ServiceCoche();
+
+export default {
+  name: "CochesComponent",
+  mounted() {
+    service.getCoches().then((result) => {
+      this.status = true;
+      this.coches = result;
+    });
+  },
+  data() {
+    return {
+      coches: [],
+      status: false,
+    };
+  },
+};
+</script>
+
+<style>
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 160px;
+  height: 100px;
+  margin-left: -80px;
+  margin-top: -50px;
+  border-radius: 5px;
+  background: #1e3f57;
+  animation: dot1_ 3s cubic-bezier(0.55, 0.3, 0.24, 0.99) infinite;
+}
+
+.loader:nth-child(2) {
+  z-index: 11;
+  width: 150px;
+  height: 90px;
+  margin-top: -45px;
+  margin-left: -75px;
+  border-radius: 3px;
+  background: #3c517d;
+  animation-name: dot2_;
+}
+
+.loader:nth-child(3) {
+  z-index: 12;
+  width: 40px;
+  height: 20px;
+  margin-top: 50px;
+  margin-left: -20px;
+  border-radius: 0 0 5px 5px;
+  background: #6bb2cd;
+  animation-name: dot3_;
+}
+
+@keyframes dot1_ {
+  3%,
+  97% {
+    width: 160px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -80px;
+  }
+
+  30%,
+  36% {
+    width: 80px;
+    height: 120px;
+    margin-top: -60px;
+    margin-left: -40px;
+  }
+
+  63%,
+  69% {
+    width: 40px;
+    height: 80px;
+    margin-top: -40px;
+    margin-left: -20px;
+  }
+}
+
+@keyframes dot2_ {
+  3%,
+  97% {
+    height: 90px;
+    width: 150px;
+    margin-left: -75px;
+    margin-top: -45px;
+  }
+
+  30%,
+  36% {
+    width: 70px;
+    height: 96px;
+    margin-left: -35px;
+    margin-top: -48px;
+  }
+
+  63%,
+  69% {
+    width: 32px;
+    height: 60px;
+    margin-left: -16px;
+    margin-top: -30px;
+  }
+}
+
+@keyframes dot3_ {
+  3%,
+  97% {
+    height: 20px;
+    width: 40px;
+    margin-left: -20px;
+    margin-top: 50px;
+  }
+
+  30%,
+  36% {
+    width: 8px;
+    height: 8px;
+    margin-left: -5px;
+    margin-top: 49px;
+    border-radius: 8px;
+  }
+
+  63%,
+  69% {
+    width: 16px;
+    height: 4px;
+    margin-left: -8px;
+    margin-top: -37px;
+    border-radius: 10px;
+  }
+}
+</style>
